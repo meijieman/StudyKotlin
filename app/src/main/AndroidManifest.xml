@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".SecondActivity"></activity>
+
+        <!-- 全局Context提供者 -->
+        <provider
+            android:name=".ContextProvider"
+            android:authorities="${applicationId}.context_provider"
+            android:exported="false" />
     </application>
 
 </manifest>
