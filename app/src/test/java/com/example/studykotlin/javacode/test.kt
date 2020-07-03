@@ -2,6 +2,10 @@
 
 package com.example.studykotlin.javacode
 
+import java.io.File
+import java.io.FileInputStream
+import java.io.IOException
+
 /**
  * TODO
  *
@@ -27,4 +31,11 @@ fun test1() {
 @JvmName("accumlateInt")
 fun List<String>.accumlate(): Int {
     return 2
+}
+
+// @Throws 提醒 java 代码主动进行异常捕获
+@Throws(IOException::class)
+fun getInputStream(filename: String): FileInputStream {
+    val file = File(filename)
+    return FileInputStream(file)
 }

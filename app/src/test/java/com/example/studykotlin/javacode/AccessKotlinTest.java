@@ -2,6 +2,9 @@ package com.example.studykotlin.javacode;
 
 import org.junit.Test;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+
 import kotlin.jvm.JvmClassMappingKt;
 import kotlin.reflect.KClass;
 
@@ -104,5 +107,22 @@ public class AccessKotlinTest {
         GlobalUtil.test100();
     }
 
+    /*
+    型变
+    java 只支持使用处型变，且在使用处型变是通过通配符来实现的
+    kotlin 中型变分为『在声明处型变』和『在使用处型变』两种
+    所以，如果要在 java 中使用 kt 中的泛型类型，则需要将 kt 中的『在声明处型变』映射为『在使用处型变』
+    @JvmWildcard
+    @JvmSuppressWildcards
+     */
+
+    @Test
+    public void test10() {
+        try {
+            FileInputStream is = GlobalUtil.getInputStream("");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

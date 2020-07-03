@@ -89,4 +89,8 @@ class AccessJavaTest {
     external fun sum(x: Int, y: Int): Int
 
 
+    @Test
+    fun test6() {
+        val `is` = getInputStream("")
+    }
 }
