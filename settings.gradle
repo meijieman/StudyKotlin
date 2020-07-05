@@ -1,2 +1,3 @@
+include ':booklib'
 include ':app'
 rootProject.name = "StudyKotlin"
