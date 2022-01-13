@@ -35,11 +35,11 @@ class BookListActivity : AppCompatActivity() {
     }
 
     private fun initUi() {
-        val toolbar = findViewById<Toolbar>(R.id.toolbar).apply {
-            title = getString(R.string.app_name)
-            setNavigationIcon(R.mipmap.ic_launcher)
-        }
-        setSupportActionBar(toolbar)
+//        val toolbar = findViewById<Toolbar>(R.id.toolbar).apply {
+//            title = getString(R.string.app_name)
+//            setNavigationIcon(R.mipmap.ic_launcher)
+//        }
+//        setSupportActionBar(toolbar)
 
         val manager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         bookAdapter = BookAdapter(

@@ -1,14 +1,19 @@
 package com.example.studykotlin
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.google.gson.Gson
+import com.jinrishici.sdk.android.JinrishiciClient
+import com.jinrishici.sdk.android.factory.JinrishiciFactory
+import com.jinrishici.sdk.android.listener.JinrishiciCallback
+import com.jinrishici.sdk.android.model.JinrishiciRuntimeException
+import com.jinrishici.sdk.android.model.PoetySentence
 import kotlinx.android.synthetic.main.activity_main.*
 
-
-class MainActivity(test: Test) : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     companion object {
         const val TAG: String = "Main"
     }
@@ -137,7 +142,24 @@ class MainActivity(test: Test) : AppCompatActivity() {
         tv_main.text = "kotlin"
 
         handler.sendEmptyMessage(1)
+        Log.w(TAG, "start")
+        btn_update.setOnClickListener {
+            // 今日诗词
+            JinrishiciFactory.init(this)
+            val client = JinrishiciClient.getInstance()
+            client.getOneSentenceBackground(object : JinrishiciCallback {
+                override fun done(poetySentence: PoetySentence) {
+                    Log.w(TAG, "success ${Gson().toJson(poetySentence)}")
 
+                    //在这里进行你的逻辑处理
+                    tv_main.text = poetySentence.data.content
+                }
+
+                override fun error(e: JinrishiciRuntimeException) {
+                    Log.e(TAG, "error: code = " + e.code + " message = " + e.message)
+                }
+            })
+        }
     }
 
     override fun onDestroy() {

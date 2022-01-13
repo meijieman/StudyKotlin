@@ -15,7 +15,31 @@ import kotlin.system.measureTimeMillis
  * @author meijie05
  * @since 2020/6/26 上午9:36
  */
+
+var outterVar:Int = 2
 class AsyncTest {
+
+    var innerVar:Int = 3
+
+    @Test
+    fun test0() {
+        println("out start ${Thread.currentThread().name}")
+        GlobalScope.launch {
+            println("start ${Thread.currentThread().name}")
+            withContext(Dispatchers.IO) {
+                println("耗时操作 ${Thread.currentThread().name}")
+                delay(1000)
+            }
+            println("end ${Thread.currentThread().name}")
+        }
+
+        Thread.sleep(3000)
+
+        println("${outterVar * 2}")
+        println("${innerVar * 2}")
+    }
+
+
 
     @Test
     fun test() {

@@ -23,7 +23,7 @@ interface BookApiService {
             val retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("http://10.0.2.2:8080/api")
+                .baseUrl("http://10.0.2.2:8080/api/")
                 .build()
 
             return retrofit.create(clazz)
